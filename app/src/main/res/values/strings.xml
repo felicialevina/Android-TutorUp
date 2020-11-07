@@ -8,4 +8,5 @@
     <string name="txtEmail"></string>
     <string name="lblPass">Password:</string>
     <string name="txtPass"></string>
+    <string name="btnLogin2">Login</string>
 </resources>

@@ -97,7 +97,7 @@
         android:layout_marginRight="104dp"
         android:layout_marginBottom="61dp"
         android:background="#AA8CD8"
-        android:text="@string/btnLogin"
+        android:text="@string/btnLogin2"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
