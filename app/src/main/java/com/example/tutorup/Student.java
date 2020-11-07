@@ -16,4 +16,22 @@ public class Student {
         this.edu = edu;
         this.balance = balance;
     }
+    public int getId(){
+        return id;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public String getEdu(){
+        return edu;
+    }
+    public float getBalance(){
+        return balance;
+    }
+    public void setBalance(float balance){
+        this.balance = balance;
+    }
 }
