@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Tutor Up</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnSignup">Sign Up</string>
+    <string name="btnReg">Register</string>
+    <string name="contentDescription">image</string>
+    <string name="lblEmail">Email:</string>
+    <string name="txtEmail"></string>
+    <string name="lblPass">Password:</string>
+    <string name="txtPass"></string>
 </resources>
