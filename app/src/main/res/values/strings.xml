@@ -9,4 +9,15 @@
     <string name="lblPass">Password:</string>
     <string name="txtPass"></string>
     <string name="btnLogin2">Login</string>
+    <string name="lblName">Name :</string>
+    <string name="lblEmail2">Email :</string>
+    <string name="lblPass2">Password :</string>
+    <string name="lblConPass">Confirm Password :</string>
+    <string name="txtName"></string>
+    <string name="txtEmail2"></string>
+    <string name="txtPass2"></string>
+    <string name="txtConfPass"></string>
+    <string name="radHS">High School</string>
+    <string name="radPS">Post Secondary</string>
+    <string name="btnSignup2">Sign Up</string>
 </resources>
