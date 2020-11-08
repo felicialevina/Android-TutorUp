@@ -61,7 +61,7 @@
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:text="@string/txtConfPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblConPass" />
@@ -126,7 +126,7 @@
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:text="@string/txtPass2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblPass2" />

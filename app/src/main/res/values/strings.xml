@@ -20,4 +20,9 @@
     <string name="radBA">Bachelor\'s</string>
     <string name="radMA">Master\'s</string>
     <string name="radPH">PhD</string>
+    <string-array name="coursesgroup">
+        <item>Computer Science</item>
+        <item>Chemistry</item>
+        <item>Mathematics</item>
+    </string-array>
 </resources>

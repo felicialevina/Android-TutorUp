@@ -51,17 +51,16 @@ public class SignUp extends AppCompatActivity {
             sConf = conf.getText().toString();
 
             if(!sPass.equals(sConf)){
-                toastMessage("password does not match");
+                toastMessage("Password does not match");
             }
             else{
                 sName = name.getText().toString();
                 sEmail = email.getText().toString();
 
-                if(!radHS.isChecked() && !radPS.isChecked()){
-                    toastMessage("choose an education level");
-                }
-                else if(sName.equals("") || sEmail.equals("")){
-                    toastMessage("Fill in all fields");
+                if(sName.equals("") || sEmail.equals("")){
+                    toastMessage("Fill in all fields"); }
+                else if(!radHS.isChecked() && !radPS.isChecked()){
+                    toastMessage("Choose an education level");
                 }
                 else{
                     //FIRESTORE
@@ -83,8 +82,6 @@ public class SignUp extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
                                     toastMessage("Sign Up Successful");
-
-                                   // Log.d(TAG, "DocumentSnapshot added with ID " + documentReference.getId());
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {

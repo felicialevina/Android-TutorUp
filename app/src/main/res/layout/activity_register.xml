@@ -8,16 +8,17 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="363dp"
-        android:layout_height="500dp"
+        android:layout_width="340dp"
+        android:layout_height="525dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:background="#AA8CD8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,12 +27,12 @@
 
             <TextView
                 android:id="@+id/lblName2"
-                android:layout_width="95dp"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="268dp"
                 android:layout_marginRight="268dp"
-                android:paddingLeft="10dp"
+                android:paddingLeft="20dp"
                 android:text="@string/lblName"
                 android:textColor="#FFFFFF"
                 android:textSize="26sp" />
@@ -40,19 +41,19 @@
                 android:id="@+id/txtName2"
                 android:layout_width="281dp"
                 android:layout_height="47dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/lblEmail3"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="268dp"
                 android:layout_marginRight="268dp"
-                android:paddingLeft="10dp"
+                android:paddingLeft="20dp"
                 android:text="@string/lblEmail"
                 android:textColor="#FFFFFF"
                 android:textSize="26sp" />
@@ -61,19 +62,19 @@
                 android:id="@+id/txtEmail3"
                 android:layout_width="281dp"
                 android:layout_height="47dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
                 android:ems="10"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName" />
 
             <TextView
                 android:id="@+id/lblFee"
-                android:layout_width="189dp"
+                android:layout_width="198dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="268dp"
                 android:layout_marginRight="268dp"
-                android:paddingLeft="10dp"
+                android:paddingLeft="20dp"
                 android:text="@string/lblFee"
                 android:textColor="#FFFFFF"
                 android:textSize="26sp" />
@@ -82,9 +83,9 @@
                 android:id="@+id/txtFee"
                 android:layout_width="281dp"
                 android:layout_height="47dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:id="@+id/lblPass3"
@@ -93,7 +94,7 @@
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="268dp"
                 android:layout_marginRight="268dp"
-                android:paddingLeft="10dp"
+                android:paddingLeft="20dp"
                 android:text="@string/lblPass"
                 android:textColor="#FFFFFF"
                 android:textSize="26sp" />
@@ -102,42 +103,51 @@
                 android:id="@+id/txtPass3"
                 android:layout_width="281dp"
                 android:layout_height="47dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/lblConPass2"
-                android:layout_width="240dp"
+                android:layout_width="255dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:layout_marginEnd="268dp"
                 android:layout_marginRight="268dp"
-                android:paddingLeft="10dp"
+                android:paddingLeft="20dp"
                 android:text="@string/lblConPass"
                 android:textColor="#FFFFFF"
                 android:textSize="26sp" />
 
             <EditText
-                android:id="@+id/txtConPass2"
+                android:id="@+id/txtConfPass2"
                 android:layout_width="281dp"
                 android:layout_height="47dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="25dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword" />
+
+            <Spinner
+                android:id="@+id/spnGroup"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:entries="@array/coursesgroup"
+                android:scrollbarSize="15dp"
+                android:spinnerMode="dropdown" />
 
             <RadioGroup
                 android:id="@+id/radDegree"
-                android:layout_width="212dp"
+                android:layout_width="340dp"
                 android:layout_height="105dp"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="56dp"
-                android:layout_marginRight="56dp">
+                android:layout_marginBottom="20dp">
 
                 <RadioButton
                     android:id="@+id/radBA"
-                    android:layout_width="200dp"
+                    android:layout_width="205dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/radBA"
@@ -146,7 +156,7 @@
 
                 <RadioButton
                     android:id="@+id/radMA"
-                    android:layout_width="200dp"
+                    android:layout_width="205dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/radMA"
@@ -155,7 +165,7 @@
 
                 <RadioButton
                     android:id="@+id/radPH"
-                    android:layout_width="200dp"
+                    android:layout_width="205dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/radPH"
@@ -180,6 +190,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
