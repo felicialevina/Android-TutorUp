@@ -4,14 +4,11 @@
     <string name="btnSignup">Sign Up</string>
     <string name="btnReg">Register</string>
     <string name="contentDescription">image</string>
-    <string name="lblEmail">Email:</string>
+    <string name="lblEmail">Email :</string>
     <string name="txtEmail"></string>
-    <string name="lblPass">Password:</string>
+    <string name="lblPass">Password :</string>
     <string name="txtPass"></string>
-    <string name="btnLogin2">Login</string>
     <string name="lblName">Name :</string>
-    <string name="lblEmail2">Email :</string>
-    <string name="lblPass2">Password :</string>
     <string name="lblConPass">Confirm Password :</string>
     <string name="txtName"></string>
     <string name="txtEmail2"></string>
@@ -19,5 +16,8 @@
     <string name="txtConfPass"></string>
     <string name="radHS">High School</string>
     <string name="radPS">Post Secondary</string>
-    <string name="btnSignup2">Sign Up</string>
+    <string name="lblFee">Fee (per hour) :</string>
+    <string name="radBA">Bachelor\'s</string>
+    <string name="radMA">Master\'s</string>
+    <string name="radPH">PhD</string>
 </resources>

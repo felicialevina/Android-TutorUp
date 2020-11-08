@@ -24,13 +24,7 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    int size = 0;
 
-    private static final String TAG = "SignUpActivity";
-    public static final String NameKey = "Name";
-    public static final String EmailKey = "Email";
-    public static final String PassKey = "Password";
-    public static final String EduKey = "Education";
     String sName;
     String sEmail;
     String sPass;
@@ -72,15 +66,16 @@ public class SignUp extends AppCompatActivity {
                 else{
                     //FIRESTORE
                     Map<String, Object> student = new HashMap<>();
-                    student.put(NameKey, sName);
-                    student.put(EmailKey, sEmail);
-                    student.put(PassKey, sPass);
+                    student.put("Name", sName);
+                    student.put("Email", sEmail);
+                    student.put("Password", sPass);
                     if(radHS.isChecked()){
-                        student.put(EduKey, radHS.getText());
+                        student.put("Education", radHS.getText());
                     }
                     else{
-                        student.put(EduKey, radPS.getText());
+                        student.put("Education", radPS.getText());
                     }
+                    student.put("Balance", 100);
 
                     db.collection("students")
                             .add(student)
