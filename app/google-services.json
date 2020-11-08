@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1071671329768",
+    "firebase_url": "https://myfirstapp-fd3d9.firebaseio.com",
+    "project_id": "myfirstapp-fd3d9",
+    "storage_bucket": "myfirstapp-fd3d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071671329768:android:708db4a3122b1814365a5d",
+        "android_client_info": {
+          "package_name": "com.example.myfirestoreapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071671329768-ol6c20u2g1hfgojs4g54ct2uqlsd4f6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrvRfxwBklP82PMFtkEhWpnd2T6U6FeXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071671329768-ol6c20u2g1hfgojs4g54ct2uqlsd4f6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071671329768:android:4ba467d2e11c5a73365a5d",
+        "android_client_info": {
+          "package_name": "com.example.tutorup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071671329768-ol6c20u2g1hfgojs4g54ct2uqlsd4f6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrvRfxwBklP82PMFtkEhWpnd2T6U6FeXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071671329768-ol6c20u2g1hfgojs4g54ct2uqlsd4f6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

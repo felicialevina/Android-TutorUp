@@ -17,9 +17,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     private final LayoutInflater mInflater;
     private List<Course> mCourses; // Cached copy of courses
     private Integer[] ImgArr = new Integer[3];
-    ImageView pic;
 
-    CourseListAdapter(Context context, Integer[] ImgArr) { mInflater = LayoutInflater.from(context); this.ImgArr = ImgArr;}
+    CourseListAdapter(Context context, List<Course> mCourses, Integer[] ImgArr) { mInflater = LayoutInflater.from(context); this.mCourses = mCourses; this.ImgArr = ImgArr;}
 
     @Override
     public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,7 +30,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     public void onBindViewHolder(CourseViewHolder holder, int position) {
         if (mCourses != null) {
             Course current = mCourses.get(position);
-            holder.courseItemView.setText(current.getCourse());
+            holder.courseItemView.setText(current.getName());
             holder.image.setImageResource(ImgArr[position]);
         } else {
             // Covers the case of data not being ready yet.
@@ -71,8 +70,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             int position = getLayoutPosition();
 
             Intent intent = new Intent(v.getContext(), TutorList.class);
-            intent.putExtra("name", mCourses.get(position).getCourse());
-            //intent.putExtra("img", artists.get(position).getImg());
+            intent.putExtra("name", mCourses.get(position).getName());
             v.getContext().startActivity(intent);
             aAdapter.notifyDataSetChanged();
         }

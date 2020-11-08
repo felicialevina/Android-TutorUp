@@ -54,21 +54,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE name = '" + item + "'");
     }
-
-    public List<Course> getList()
-    {
-        Course course = null;
-        List<Course> coursesList = null;
-        int cID = 0;
-        String cName = "";
-        Cursor res = getData();
-        while(res.moveToNext())
-        {
-            cID = res.getInt(0);
-            cName = res.getString(1);
-            course = new Course(cID, cName);
-            coursesList.add(course);
-        }
-        return coursesList;
-    }
 }
