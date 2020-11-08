@@ -10,15 +10,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
 
     private final LayoutInflater mInflater;
-    private List<Course> mCourses; // Cached copy of courses
+    private ArrayList<Course> mCourses; // Cached copy of courses
     private Integer[] ImgArr = new Integer[3];
 
-    CourseListAdapter(Context context, List<Course> mCourses, Integer[] ImgArr) { mInflater = LayoutInflater.from(context); this.mCourses = mCourses; this.ImgArr = ImgArr;}
+    CourseListAdapter(Context context, ArrayList<Course> mCourses, Integer[] ImgArr) { mInflater = LayoutInflater.from(context); this.mCourses = mCourses; this.ImgArr = ImgArr;}
 
     @Override
     public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -36,11 +37,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             // Covers the case of data not being ready yet.
             holder.courseItemView.setText("No Course");
         }
-    }
-
-    void setCourses(List<Course> courses){
-        mCourses = courses;
-        notifyDataSetChanged();
     }
 
     // getItemCount() is called many times, and when it is first called,

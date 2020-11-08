@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -53,5 +54,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE name = '" + item + "'");
+    }
+
+    public ArrayList<Course> getList()
+    {
+        ArrayList<Course> coursesList = new ArrayList<Course>();
+        int cID = 0;
+        String cName = "";
+        Cursor res = getData();
+        while(res.moveToNext())
+        {
+            cID = res.getInt(0);
+            cName = res.getString(1);
+            Course course = new Course(cID, cName);
+            coursesList.add(course);
+        }
+        return coursesList;
     }
 }
