@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tutorName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="#AA8CD8"
         android:gravity="center_horizontal"
         android:padding="10dp"
-        android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="25sp" />
 
@@ -24,7 +23,6 @@
         android:gravity="center_horizontal"
         android:paddingTop="10dp"
         android:paddingBottom="20dp"
-        android:text="Degree: Bachelor's\n\nFee: $50\n\nRating"
         android:textColor="@android:color/white"
         android:textSize="20sp" />
 </LinearLayout>

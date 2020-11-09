@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TutorList">
+    tools:context=".Hire">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-       tools:listitem="@layout/recyclerview_item2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

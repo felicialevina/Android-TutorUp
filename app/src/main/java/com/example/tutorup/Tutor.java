@@ -1,7 +1,6 @@
 package com.example.tutorup;
 
 public class Tutor {
-    int id;
     String name;
     String email;
     String pass;
@@ -11,8 +10,7 @@ public class Tutor {
     double fee;
     double balance;
 
-    public Tutor(int id, String name, String email, String pass, String course, String degree, double rating, double fee, double balance){
-        this.id = id;
+    public Tutor(String name, String email, String pass, String course, String degree, double rating, double fee, double balance){
         this.name = name;
         this.email = email;
         this.pass = pass;
@@ -21,9 +19,6 @@ public class Tutor {
         this.rating = rating;
         this.fee = fee;
         this.balance = balance;
-    }
-    public int getId(){
-        return id;
     }
     public String getName(){
         return name;
@@ -34,14 +29,14 @@ public class Tutor {
     public String getCourse(){
         return course;
     }
+    public double getFee(){
+        return fee;
+    }
     public String getDegree(){
         return degree;
     }
     public double getRating(){
         return rating;
-    }
-    public double getFee(){
-        return fee;
     }
     public double getBalance(){
         return balance;

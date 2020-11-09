@@ -1,22 +1,28 @@
 package com.example.tutorup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 public class TutorList extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ArrayList<Tutor> mTutors;
-    TextView cName;
+    ArrayList<Tutor> mTutors = new ArrayList<Tutor>();
+    Context cInput = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +31,42 @@ public class TutorList extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         Intent intent = getIntent();
-        String check = intent.getStringExtra("coursename");
+        final String check = intent.getStringExtra("coursename");
 
+        db.collection("tutors")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String tCourse = document.getData().get("course").toString();
 
+                                if(tCourse.equals(check)){
+                                String tBalance = document.getData().get("balance").toString();
+                                String tDegree = document.getData().get("degree").toString();
+                                String tEmail = document.getData().get("email").toString();
+                                String tFee = document.getData().get("fee").toString();
+                                String tName = document.getData().get("name").toString();
+                                String tPass = document.getData().get("password").toString();
+                                String tRating = document.getData().get("rating").toString();
 
+                                double tFee2 = Double.parseDouble(tFee);
+                                double tRating2 = Double.parseDouble(tRating);
+                                double tBalance2 = Double.parseDouble(tBalance);
 
-        cName = findViewById(R.id.courseName);
-        cName.setText(check);
-
-
-
-
-
-
-
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final TutorListAdapter adapter = new TutorListAdapter(this, mTutors);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                                Tutor tutor = new Tutor(tName, tEmail, tPass, tCourse, tDegree, tRating2, tFee2, tBalance2);
+                                mTutors.add(tutor);
+                                }
+                            }
+                            RecyclerView recyclerView = findViewById(R.id.recyclerview2);
+                            final TutorListAdapter adapter = new TutorListAdapter(cInput, mTutors);
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(cInput));
+                        } else {
+                            Log.w("TutorList", "Error getting the document", task.getException());
+                        }
+                    }
+                });
     }
 }

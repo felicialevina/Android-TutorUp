@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.TutorViewHolder> {
 
@@ -57,17 +56,20 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.Tuto
             tutorName = itemView.findViewById(R.id.tutorName);
             tutorInfo = itemView.findViewById(R.id.tutorInfo);
             this.aAdapter = adapter;
-            //itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             int position = getLayoutPosition();
 
-/*            Intent intent = new Intent(v.getContext(), TutorList.class);
+            Intent intent = new Intent(v.getContext(), Hire.class);
             intent.putExtra("name", mTutors.get(position).getName());
+            intent.putExtra("email", mTutors.get(position).getEmail());
+            intent.putExtra("fee", mTutors.get(position).getFee());
+
             v.getContext().startActivity(intent);
-            aAdapter.notifyDataSetChanged();*/
+            aAdapter.notifyDataSetChanged();
         }
     }
 }
