@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,6 +29,7 @@ public class Register extends AppCompatActivity {
     double tFee;
     String tPass;
     String tConf;
+    String tCourse;
     String tDegree;
 
     @Override
@@ -40,6 +42,7 @@ public class Register extends AppCompatActivity {
         final EditText fee = findViewById(R.id.txtFee);
         final EditText pass = findViewById(R.id.txtPass3);
         final EditText conf = findViewById(R.id.txtConfPass2);
+        final Spinner coursesGroup = findViewById(R.id.spnGroup);
         final RadioButton radBA = findViewById(R.id.radBA);
         final RadioButton radMA = findViewById(R.id.radMA);
         final RadioButton radPH = findViewById(R.id.radPH);
@@ -66,17 +69,20 @@ public class Register extends AppCompatActivity {
                     }
                     else{
                         tFee = Double.parseDouble(feeCheck);
+                        tCourse = coursesGroup.getSelectedItem().toString();
 
                         //FIRESTORE
                         Map<String, Object> tutor = new HashMap<>();
-                        tutor.put("Name", tName);
-                        tutor.put("Email", tEmail);
-                        tutor.put("Fee", tFee);
-                        tutor.put("Password", tPass);
-                        if(radBA.isChecked()){tutor.put("Degree", radBA.getText()); }
-                        else if(radMA.isChecked()){tutor.put("Degree", radMA.getText()); }
-                        else{tutor.put("Education", radPH.getText()); }
-                        tutor.put("Balance", 0);
+                        tutor.put("name", tName);
+                        tutor.put("email", tEmail);
+                        tutor.put("fee", tFee);
+                        tutor.put("password", tPass);
+                        if(radBA.isChecked()){tutor.put("degree", radBA.getText()); }
+                        else if(radMA.isChecked()){tutor.put("degree", radMA.getText()); }
+                        else{tutor.put("degree", radPH.getText()); }
+                        tutor.put("course", tCourse);
+                        tutor.put("balance", 0);
+                        tutor.put("rating", 0);
 
                         db.collection("tutors")
                                 .add(tutor)

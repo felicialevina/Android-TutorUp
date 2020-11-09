@@ -65,16 +65,16 @@ public class SignUp extends AppCompatActivity {
                 else{
                     //FIRESTORE
                     Map<String, Object> student = new HashMap<>();
-                    student.put("Name", sName);
-                    student.put("Email", sEmail);
-                    student.put("Password", sPass);
+                    student.put("name", sName);
+                    student.put("email", sEmail);
+                    student.put("password", sPass);
                     if(radHS.isChecked()){
-                        student.put("Education", radHS.getText());
+                        student.put("education", radHS.getText());
                     }
                     else{
-                        student.put("Education", radPS.getText());
+                        student.put("education", radPS.getText());
                     }
-                    student.put("Balance", 100);
+                    student.put("balance", 100);
 
                     db.collection("students")
                             .add(student)

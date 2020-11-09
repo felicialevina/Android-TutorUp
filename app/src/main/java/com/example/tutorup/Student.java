@@ -6,9 +6,9 @@ public class Student {
     String email;
     String pass;
     String edu;
-    float balance;
+    double balance;
 
-    public Student(int id, String name, String email, String pass, String edu, float balance){
+    public Student(int id, String name, String email, String pass, String edu, double balance){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -28,10 +28,8 @@ public class Student {
     public String getEdu(){
         return edu;
     }
-    public float getBalance(){
+    public double getBalance(){
         return balance;
     }
-    public void setBalance(float balance){
-        this.balance = balance;
-    }
+    public void setBalance(float balance){this.balance = balance; }
 }

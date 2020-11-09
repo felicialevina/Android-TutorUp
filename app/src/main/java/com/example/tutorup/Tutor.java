@@ -5,16 +5,18 @@ public class Tutor {
     String name;
     String email;
     String pass;
+    String course;
     String degree;
-    float rating;
-    float fee;
-    float balance;
+    double rating;
+    double fee;
+    double balance;
 
-    public Tutor(int id, String name, String email, String pass, String degree, float rating, float fee, float balance){
+    public Tutor(int id, String name, String email, String pass, String course, String degree, double rating, double fee, double balance){
         this.id = id;
         this.name = name;
         this.email = email;
         this.pass = pass;
+        this.course = course;
         this.degree = degree;
         this.rating = rating;
         this.fee = fee;
@@ -29,22 +31,23 @@ public class Tutor {
     public String getEmail(){
         return email;
     }
+    public String getCourse(){
+        return course;
+    }
     public String getDegree(){
         return degree;
     }
-    public float getRating(){
+    public double getRating(){
         return rating;
     }
-    public float getFee(){
+    public double getFee(){
         return fee;
     }
-    public float getBalance(){
+    public double getBalance(){
         return balance;
     }
-    public float setBalance(){
-        return balance;
-    }
-    public void setRating(float rating){
+    public void setBalance(double balance){ this.balance = balance; }
+    public void setRating(double rating){
         this.rating = rating;
     }
 }
