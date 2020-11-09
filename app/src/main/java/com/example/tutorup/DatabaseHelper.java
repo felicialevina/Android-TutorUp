@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createTable);
         db.execSQL("INSERT INTO " + TABLE_NAME + "(ID, NAME ) VALUES (1, 'Computer Science')");
         db.execSQL("INSERT INTO " + TABLE_NAME + "(ID, NAME ) VALUES (2, 'Chemistry')");
-        db.execSQL("INSERT INTO " + TABLE_NAME + "(ID, NAME ) VALUES (3, 'Math')");
+        db.execSQL("INSERT INTO " + TABLE_NAME + "(ID, NAME ) VALUES (3, 'Mathematics')");
     }
 
     @Override
@@ -62,8 +62,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int cID = 0;
         String cName = "";
         Cursor res = getData();
+
         while(res.moveToNext())
         {
+
             cID = res.getInt(0);
             cName = res.getString(1);
             Course course = new Course(cID, cName);
