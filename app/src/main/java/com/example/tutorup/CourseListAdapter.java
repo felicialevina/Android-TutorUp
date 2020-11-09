@@ -66,7 +66,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             int position = getLayoutPosition();
 
             Intent intent = new Intent(v.getContext(), TutorList.class);
-            intent.putExtra("name", mCourses.get(position).getName());
+            intent.putExtra("coursename", mCourses.get(position).getName());
             v.getContext().startActivity(intent);
             aAdapter.notifyDataSetChanged();
         }
