@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class TutorList extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<Tutor> mTutors = new ArrayList<Tutor>();
-    Context cInput = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +59,9 @@ public class TutorList extends AppCompatActivity {
                                 }
                             }
                             RecyclerView recyclerView = findViewById(R.id.recyclerview2);
-                            final TutorListAdapter adapter = new TutorListAdapter(cInput, mTutors);
+                            final TutorListAdapter adapter = new TutorListAdapter(TutorList.this, mTutors);
                             recyclerView.setAdapter(adapter);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(cInput));
+                            recyclerView.setLayoutManager(new LinearLayoutManager(TutorList.this));
                         } else {
                             Log.w("TutorList", "Error getting the document", task.getException());
                         }
