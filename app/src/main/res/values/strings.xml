@@ -25,4 +25,9 @@
         <item>Chemistry</item>
         <item>Mathematics</item>
     </string-array>
+    <string name="btnHire">Hire</string>
+    <string name="txtInfo"></string>
+    <string name="txtRate">Know this tutor?\nRate them now!</string>
+    <string name="txtTutName"></string>
+    <string name="lblBackground"></string>
 </resources>
