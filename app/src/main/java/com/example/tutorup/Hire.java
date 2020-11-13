@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class Hire extends AppCompatActivity {
+    RatingBar ratingBar;
+    int rating = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +19,7 @@ public class Hire extends AppCompatActivity {
 
         TextView info = findViewById(R.id.txtInfo);
         TextView setName = findViewById(R.id.txtTutName);
+        ratingBar = findViewById(R.id.ratingBar);
 
         Intent intent = getIntent();
         String tutName = intent.getStringExtra("name");
@@ -25,6 +30,8 @@ public class Hire extends AppCompatActivity {
         String result = "Degree: " + tutDegree + "\n\nFees: " + tutFees + "\n\nContact: " + tutEmail;
         setName.setText(tutName);
         info.setText(result);
+
+        rating = ratingBar.getNumStars();
 
     }
 }

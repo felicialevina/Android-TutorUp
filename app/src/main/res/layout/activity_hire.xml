@@ -7,6 +7,26 @@
     tools:context=".Hire">
 
     <TextView
+        android:id="@+id/txtRate"
+        android:layout_width="281dp"
+        android:layout_height="146dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginBottom="36dp"
+        android:background="#AA8CD8"
+        android:gravity="center_horizontal"
+        android:paddingTop="10sp"
+        android:text="@string/txtRate"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/txtBackground"
         android:layout_width="290dp"
         android:layout_height="190dp"
@@ -58,25 +78,6 @@
         app:srcCompat="@drawable/classroom" />
 
     <TextView
-        android:id="@+id/txtRate"
-        android:layout_width="281dp"
-        android:layout_height="146dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginBottom="36dp"
-        android:background="#AA8CD8"
-        android:gravity="center_horizontal"
-        android:text="@string/txtRate"
-        android:textColor="#FFFFFF"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/txtTutName"
         android:layout_width="254dp"
         android:layout_height="38dp"
@@ -109,6 +110,21 @@
         app:layout_constraintBottom_toTopOf="@+id/btnHire"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginRight="77dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:numStars="5"
+        android:stepSize="0.5"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
