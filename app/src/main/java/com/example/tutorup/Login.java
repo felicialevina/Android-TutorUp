@@ -49,6 +49,9 @@ public class Login extends AppCompatActivity {
                 uEmail = email.getText().toString();
                 uPass = pass.getText().toString();
 
+                if(uEmail.equals("") || uPass.equals("")){
+                    toastMessage("Fill in all fields");
+                }
                 if(radTU.isChecked()) {
                     db.collection("tutors")
                             .get()
@@ -103,6 +106,7 @@ public class Login extends AppCompatActivity {
                                         if(sEmail.equals(uEmail)){
                                             if(!sPass.equals(uPass)){
                                                 toastMessage("Incorrect password");
+                                                pass.setText("");
                                             }
                                             else {
                                                 startActivity(new Intent(Login.this, Homepage.class));

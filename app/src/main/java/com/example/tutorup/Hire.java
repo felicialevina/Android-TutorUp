@@ -32,6 +32,5 @@ public class Hire extends AppCompatActivity {
         info.setText(result);
 
         rating = ratingBar.getNumStars();
-
     }
 }
