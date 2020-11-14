@@ -24,12 +24,10 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     String sName;
     String sEmail;
     String sPass;
     String sConf;
-    String sEdu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

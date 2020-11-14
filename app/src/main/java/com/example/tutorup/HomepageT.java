@@ -1,13 +1,31 @@
 package com.example.tutorup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class HomepageT extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String uEmail;
+    String uPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +38,10 @@ public class HomepageT extends AppCompatActivity {
         TextView name = findViewById(R.id.txtTutName2);
         Button button = (Button) findViewById(R.id.btnDeactivate);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         String tutFee = intent.getStringExtra("fee");
         String tutName = intent.getStringExtra("name");
-        String tutEmail = intent.getStringExtra("email");
+        final String tutEmail = intent.getStringExtra("email");
         String tutDegree = intent.getStringExtra("degree");
         String tutRating = intent.getStringExtra("rating");
 
@@ -33,5 +51,34 @@ public class HomepageT extends AppCompatActivity {
         String result2 = tutFee + "\n\n\n\n" + tutRating;
         info.setText(result);
         info2.setText(result2);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                db.collection("tutors")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        String tEmail = document.getData().get("email").toString();
+
+                                        if(tEmail.equals(tutEmail)) {
+                                            db.collection("tutors")
+                                                    .document(document.getId())
+                                                    .delete();
+                                            break;
+                                        }
+                                    }
+                                    startActivity(new Intent(HomepageT.this, MainActivity.class));}
+                                 else {
+                                    Log.w("HomepageT", "Error getting the document", task.getException());
+                                }
+                            }
+                        });
+            }
+        });
     }
 }
