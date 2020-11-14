@@ -24,7 +24,7 @@ public class Hire extends AppCompatActivity {
         Intent intent = getIntent();
         String tutName = intent.getStringExtra("name");
         String tutDegree = intent.getStringExtra("degree");
-        Double tutFees = intent.getDoubleExtra("fee", Double.parseDouble("0.0"));
+        Double tutFees = intent.getDoubleExtra("fee", 0.0);
         String tutEmail = intent.getStringExtra("email");
 
         String result = "Degree: " + tutDegree + "\n\nFees: " + tutFees + "\n\nContact: " + tutEmail;

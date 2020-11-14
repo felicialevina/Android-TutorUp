@@ -69,7 +69,8 @@ public class Login extends AppCompatActivity {
                                                     pass.setText("");
                                                 }
                                                 else {
-                                                    String tBalance = document.getData().get("balance").toString();
+                                                    //String tBalance = document.getData().get("balance").toString();
+                                                    String tFee = document.getData().get("fee").toString();
                                                     String tDegree = document.getData().get("degree").toString();
                                                     String tName = document.getData().get("name").toString();
                                                     String tRating = document.getData().get("rating").toString();
@@ -78,8 +79,9 @@ public class Login extends AppCompatActivity {
                                                     intent.putExtra("name", tName);
                                                     intent.putExtra("email", tEmail);
                                                     intent.putExtra("degree", tDegree);
+                                                    intent.putExtra("fee", tFee);
                                                     intent.putExtra("rating", tRating);
-                                                    intent.putExtra("balance", tBalance);
+                                                    //intent.putExtra("balance", tBalance);
                                                     //Login.this.startActivity(intent);
                                                     startActivity(intent);
                                                     break;
