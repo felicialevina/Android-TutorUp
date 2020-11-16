@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +31,6 @@ public class Register extends AppCompatActivity {
     String tPass;
     String tConf;
     String tCourse;
-    String tDegree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +83,9 @@ public class Register extends AppCompatActivity {
                         tutor.put("course", tCourse);
                         tutor.put("balance", 0);
                         tutor.put("rating", 0);
+
+                        ArrayList<Double> arrayExample = new ArrayList<>();
+                        tutor.put("ratingList", arrayExample);
 
                         db.collection("tutors")
                                 .add(tutor)

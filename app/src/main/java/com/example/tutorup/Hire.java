@@ -20,12 +20,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Hire extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     RatingBar ratingBar;
-    int rating = 0;
+    float ratingInput = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +43,57 @@ public class Hire extends AppCompatActivity {
         String tutName = intent.getStringExtra("name");
         String tutDegree = intent.getStringExtra("degree");
         Double tutFees = intent.getDoubleExtra("fee", 0.0);
-        String tutEmail = intent.getStringExtra("email");
+        final String tutEmail = intent.getStringExtra("email");
 
         String result = "Degree: " + tutDegree + "\n\nFees: " + tutFees + "\n\nContact: " + tutEmail;
         setName.setText(tutName);
         info.setText(result);
 
-        rating = ratingBar.getNumStars();
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ratingInput = rating;
+                //Log.d("Hire", "INPUT " + ratingInput);
+            }
+        });
+
+        db.collection("tutors")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String tEmail = document.getData().get("email").toString();
+
+                                if(tEmail.equals(tutEmail)) {
+                                    ArrayList<Double> list = (ArrayList<Double>) document.getData().get("ratingList");
+                                    if (list.size() == 0) {
+                                    //ADD INPUT TO ARRAY AND UPDATE
+
+                                    } else {
+                                        double ratingTotal = 0.0;
+                                        for (int i = 0; i < list.size(); i++) {
+                                            String covert = "" + list.get(i);
+                                            ratingTotal += Double.parseDouble(covert);
+                                        }
+                                        ratingTotal = ratingTotal / list.size();
+
+                                        Map<String, Object> map = new HashMap<>();
+                                        map.put("rating", ratingTotal);
+                                        db.collection("tutors")
+                                                .document(document.getId())
+                                                .update(map);
+
+                                        //ADD INPUT TO ARRAY AND UPDATE
+                                    }
+                                }
+                            }
+                        } else {
+                            Log.w("TutorList", "Error getting the document", task.getException());
+                        }
+                    }
+                });
 
         final Calendar c = Calendar.getInstance();
         final DateFormat frmtDate = DateFormat.getDateInstance();
@@ -68,9 +115,5 @@ public class Hire extends AppCompatActivity {
         });
 
         /*frmtDate.format(c.getTime())*/
-
-
-
-
     }
 }
