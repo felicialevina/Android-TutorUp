@@ -42,7 +42,4 @@ public class Tutor {
         return balance;
     }
     public void setBalance(double balance){ this.balance = balance; }
-    public void setRating(double rating){
-        this.rating = rating;
-    }
 }
