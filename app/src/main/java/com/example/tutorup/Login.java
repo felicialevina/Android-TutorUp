@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    int notif = 0;
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
                                             String tEmail = document.getData().get("email").toString();
@@ -73,10 +74,14 @@ public class Login extends AppCompatActivity {
                                                     intent.putExtra("fee", tFee);
                                                     intent.putExtra("rating", tRating);
                                                     //intent.putExtra("balance", tBalance);
+                                                    notif++;
                                                     startActivity(intent);
                                                     break;
                                                 }
                                             }
+                                        }
+                                        if(notif == 0){
+                                            toastMessage("Tutor account not found");
                                         }
                                     } else {
                                         Log.w("Login", "Error getting the document", task.getException());
@@ -90,6 +95,7 @@ public class Login extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                int notif = 0;
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         String sEmail = document.getData().get("email").toString();
@@ -101,10 +107,14 @@ public class Login extends AppCompatActivity {
                                                 pass.setText("");
                                             }
                                             else {
+                                                notif++;
                                                 startActivity(new Intent(Login.this, Homepage.class));
                                                 break;
                                             }
                                         }
+                                    }
+                                    if(notif == 0){
+                                        toastMessage("Student account not found");
                                     }
                                 } else {
                                     Log.w("Login", "Error getting the document", task.getException());

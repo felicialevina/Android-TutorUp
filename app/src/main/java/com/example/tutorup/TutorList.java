@@ -28,7 +28,7 @@ public class TutorList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_list);
 
-        ActionBar actionBar = getSupportActionBar();
+        //ActionBar actionBar = getSupportActionBar();
         Intent intent = getIntent();
         final String check = intent.getStringExtra("coursename");
 
