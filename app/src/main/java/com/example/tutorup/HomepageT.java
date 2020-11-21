@@ -1,8 +1,11 @@
 package com.example.tutorup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,28 +59,47 @@ public class HomepageT extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                db.collection("tutors")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        String tEmail = document.getData().get("email").toString();
+            AlertDialog.Builder dialog = new AlertDialog.Builder(HomepageT.this);
+            dialog.setTitle("Are you sure you want to delete your account?");
+            dialog.setIcon(R.drawable.ic_baseline_delete_forever_24);
+            dialog.setCancelable(false);
 
-                                        if(tEmail.equals(tutEmail)) {
-                                            db.collection("tutors")
-                                                    .document(document.getId())
-                                                    .delete();
-                                            break;
+            dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    db.collection("tutors")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            String tEmail = document.getData().get("email").toString();
+
+                                            if(tEmail.equals(tutEmail)) {
+                                                db.collection("tutors")
+                                                        .document(document.getId())
+                                                        .delete();
+                                                break;
+                                            }
                                         }
+                                        startActivity(new Intent(HomepageT.this, MainActivity.class));}
+                                    else {
+                                        Log.w("HomepageT", "Error getting the document", task.getException());
                                     }
-                                    startActivity(new Intent(HomepageT.this, MainActivity.class));}
-                                 else {
-                                    Log.w("HomepageT", "Error getting the document", task.getException());
                                 }
-                            }
-                        });
+                            });
+                }
+            });
+            dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alertDialog = dialog.create();
+            alertDialog.show();
             }
         });
     }
