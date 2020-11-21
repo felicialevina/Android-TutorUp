@@ -76,8 +76,6 @@ public class Hire extends AppCompatActivity {
                                                     ArrayList<Double> list = (ArrayList<Double>) document.getData().get("ratingList");
                                                     list.add(ratingInput);
                                                     double ratingTotal = 0.0;
-                                                    list.add(ratingInput);
-
                                                     for (int i = 0; i < list.size(); i++) {
                                                         String convert = "" + list.get(i);
                                                         ratingTotal += Double.parseDouble(convert);

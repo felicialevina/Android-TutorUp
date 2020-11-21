@@ -73,7 +73,6 @@ public class Login extends AppCompatActivity {
                                                     intent.putExtra("fee", tFee);
                                                     intent.putExtra("rating", tRating);
                                                     //intent.putExtra("balance", tBalance);
-                                                    //Login.this.startActivity(intent);
                                                     startActivity(intent);
                                                     break;
                                                 }
