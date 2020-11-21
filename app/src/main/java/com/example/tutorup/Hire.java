@@ -1,9 +1,11 @@
 package com.example.tutorup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +30,7 @@ import java.util.Map;
 public class Hire extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     RatingBar ratingBar;
-    float ratingInput = 0;
+    double ratingInput = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,51 +51,65 @@ public class Hire extends AppCompatActivity {
         setName.setText(tutName);
         info.setText(result);
 
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(Hire.this);
+        dialog.setIcon(R.drawable.ic_baseline_star_24);
+        dialog.setCancelable(false);
+
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 ratingInput = rating;
-                //Log.d("Hire", "INPUT " + ratingInput);
-            }
-        });
-
-        db.collection("tutors")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                dialog.setTitle("Do you want to give this tutor " + ratingInput + " stars?");
+                dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String tEmail = document.getData().get("email").toString();
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.collection("tutors")
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                                String tEmail = document.getData().get("email").toString();
 
-                                if(tEmail.equals(tutEmail)) {
-                                    ArrayList<Double> list = (ArrayList<Double>) document.getData().get("ratingList");
-                                    if (list.size() == 0) {
-                                    //ADD INPUT TO ARRAY AND UPDATE
+                                                if(tEmail.equals(tutEmail)) {
+                                                    ArrayList<Double> list = (ArrayList<Double>) document.getData().get("ratingList");
+                                                    list.add(ratingInput);
+                                                    double ratingTotal = 0.0;
+                                                    list.add(ratingInput);
 
-                                    } else {
-                                        double ratingTotal = 0.0;
-                                        for (int i = 0; i < list.size(); i++) {
-                                            String covert = "" + list.get(i);
-                                            ratingTotal += Double.parseDouble(covert);
+                                                    for (int i = 0; i < list.size(); i++) {
+                                                        String convert = "" + list.get(i);
+                                                        ratingTotal += Double.parseDouble(convert);
+                                                    }
+                                                    ratingTotal = ratingTotal / list.size();
+
+                                                    Map<String, Object> map = new HashMap<>();
+                                                    map.put("rating", ratingTotal);
+                                                    map.put("ratingList", list);
+                                                    db.collection("tutors")
+                                                            .document(document.getId())
+                                                            .update(map);
+                                                }
+                                            }
+                                        } else {
+                                            Log.w("TutorList", "Error getting the document", task.getException());
                                         }
-                                        ratingTotal = ratingTotal / list.size();
-
-                                        Map<String, Object> map = new HashMap<>();
-                                        map.put("rating", ratingTotal);
-                                        db.collection("tutors")
-                                                .document(document.getId())
-                                                .update(map);
-
-                                        //ADD INPUT TO ARRAY AND UPDATE
                                     }
-                                }
-                            }
-                        } else {
-                            Log.w("TutorList", "Error getting the document", task.getException());
-                        }
+                                });
                     }
                 });
+                dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = dialog.create();
+                alertDialog.show();
+            }
+        });
 
         final Calendar c = Calendar.getInstance();
         final DateFormat frmtDate = DateFormat.getDateInstance();

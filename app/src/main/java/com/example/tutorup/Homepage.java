@@ -1,17 +1,12 @@
 package com.example.tutorup;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.database.Cursor;
 import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Homepage extends AppCompatActivity {
     Integer[] CourseImage = {R.drawable.cs,R.drawable.ch,R.drawable.mt};
