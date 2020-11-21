@@ -97,6 +97,7 @@ public class Hire extends AppCompatActivity {
                                         }
                                     }
                                 });
+                        startActivity(new Intent(Hire.this, Homepage.class));
                     }
                 });
                 dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {

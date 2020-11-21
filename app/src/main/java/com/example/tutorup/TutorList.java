@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class TutorList extends AppCompatActivity {
@@ -51,6 +52,9 @@ public class TutorList extends AppCompatActivity {
 
                                 double tFee2 = Double.parseDouble(tFee);
                                 double tRating2 = Double.parseDouble(tRating);
+                                DecimalFormat df = new DecimalFormat("#.#");
+                                String rounding = df.format(tRating2);
+                                tRating2 = Double.parseDouble(rounding);
                                 double tBalance2 = Double.parseDouble(tBalance);
 
                                 Tutor tutor = new Tutor(tName, tEmail, tPass, tCourse, tDegree, tRating2, tFee2, tBalance2);

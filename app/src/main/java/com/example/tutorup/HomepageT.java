@@ -21,8 +21,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class HomepageT extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String uEmail;
-    String uPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
