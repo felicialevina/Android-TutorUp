@@ -31,10 +31,12 @@
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_marginTop="3dp"
             android:layout_marginRight="20dp"
-            android:text="SEARCH" />
+            android:background="#AA8CD8"
+            android:text="SEARCH"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
