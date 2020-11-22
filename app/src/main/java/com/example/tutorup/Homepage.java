@@ -86,6 +86,15 @@ public class Homepage extends AppCompatActivity {
                         });
             }
         });
+/*
+        Button syllabus = (Button) findViewById(R.id.btnSyllabus);
+        syllabus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Homepage.this, TopicsPage.class));
+            }
+        });
+*/
     }
     private void toastMessage(String message)
     {

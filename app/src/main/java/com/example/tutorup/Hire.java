@@ -44,6 +44,7 @@ public class Hire extends AppCompatActivity {
         Intent intent = getIntent();
         String tutName = intent.getStringExtra("name");
         String tutDegree = intent.getStringExtra("degree");
+        String tutCourse = intent.getStringExtra("course");
         Double tutFees = intent.getDoubleExtra("fee", 0.0);
         final String tutEmail = intent.getStringExtra("email");
 
@@ -118,6 +119,11 @@ public class Hire extends AppCompatActivity {
                 c.set(Calendar.YEAR, year);
                 c.set(Calendar.MONTH, month);
                 c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                /*Add to on-storage method*/
+
+
+
             }
         };
 

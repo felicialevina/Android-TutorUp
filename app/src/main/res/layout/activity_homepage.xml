@@ -17,7 +17,7 @@
             android:id="@+id/txtSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
@@ -33,9 +33,19 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginTop="3dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="5dp"
             android:background="#AA8CD8"
             android:text="SEARCH"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnSyllabus"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="10dp"
+            android:background="#AA8CD8"
+            android:text="Syllabus"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
@@ -47,5 +57,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="3dp"
-        tools:listitem="@layout/recyclerview_item" />
+        tools:listitem="@layout/recyclerview_item" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
