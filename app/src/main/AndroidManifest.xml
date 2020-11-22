@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TopicsPage"></activity>
         <activity android:name=".Hire" />
         <activity android:name=".HomepageT" />
         <activity android:name=".Register" />
