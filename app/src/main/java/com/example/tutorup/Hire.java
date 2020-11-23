@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Hire extends AppCompatActivity {
+    DatabaseHelper databaseHelper = new DatabaseHelper(this);
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     RatingBar ratingBar;
     double ratingInput = 0;
@@ -44,7 +45,7 @@ public class Hire extends AppCompatActivity {
         Intent intent = getIntent();
         String tutName = intent.getStringExtra("name");
         String tutDegree = intent.getStringExtra("degree");
-        String tutCourse = intent.getStringExtra("course");
+        final String tutCourse = intent.getStringExtra("course");
         Double tutFees = intent.getDoubleExtra("fee", 0.0);
         final String tutEmail = intent.getStringExtra("email");
 
@@ -121,8 +122,7 @@ public class Hire extends AppCompatActivity {
                 c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
                 /*Add to on-storage method*/
-
-
+                databaseHelper.addData(tutCourse);
 
             }
         };
@@ -132,6 +132,7 @@ public class Hire extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(Hire.this, d, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+
             }
         });
 

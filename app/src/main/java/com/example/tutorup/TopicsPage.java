@@ -20,7 +20,6 @@ public class TopicsPage extends AppCompatActivity {
 
         mTopics = databaseHelper.getTopicsList();
 
-
         RecyclerView recyclerView = findViewById(R.id.recyclerview3);
         final TopicsListAdapter adapter = new TopicsListAdapter(this, mTopics);
         recyclerView.setAdapter(adapter);

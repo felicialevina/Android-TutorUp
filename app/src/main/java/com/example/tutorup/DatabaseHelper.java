@@ -6,11 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -22,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL3 = "topic_name";
     private static final String COL4 = "book_name";
     private static final String TABLE_TOPICS = "topics_table";
+    private static final String TABLE_CHOSEN = "chosen_table";
 
 
 
@@ -49,14 +54,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_TOPICS + "(ID, NAME, TOPIC_NAME, BOOK_NAME ) VALUES (5, 'Chemistry', 'CHY599', 'The Business of Chemistry')");
         db.execSQL("INSERT INTO " + TABLE_TOPICS + "(ID, NAME, TOPIC_NAME, BOOK_NAME ) VALUES (6, 'Mathematics', 'MTH330', 'Advanced Engineering Calculus')");
         //System.out.println(createTable2);
+
+        String createTable3 = "CREATE TABLE " + TABLE_CHOSEN + " ( " + COL2 + " TEXT)";
+        db.execSQL(createTable3);
+        //db.execSQL("INSERT INTO " + TABLE_CHOSEN + "(NAME ) VALUES ('Computer Science')");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSES + "");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TOPICS + "");
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHOSEN + "");
         onCreate(db);
     }
+
+    public void addData(String item)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2, item);
+        Log.w(TAG, "addData: Adding " + item + " to " + TABLE_CHOSEN);
+
+        db.insert(TABLE_CHOSEN, null, contentValues);
+    }
+
+    /*public ArrayList<Topics> chosenTopics(ArrayList<Topics> mTopics)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM "
+        return mTopics;
+    }*/
 
     public Cursor getData(){
 
@@ -67,10 +95,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getTopicsData(){
+        Cursor data = null;
+        //if(!TABLE_CHOSEN.isEmpty()) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            //String query = "SELECT * FROM " + TABLE_TOPICS;
+            String query_chosen = "SELECT * FROM " + TABLE_CHOSEN;
+            Cursor data_chosen = db.rawQuery(query_chosen, null);
+            String cName = "";
+            while (data_chosen.moveToNext()) {
+                cName = data_chosen.getString(0);
+            }
+            String query = "SELECT * FROM " + TABLE_TOPICS + " WHERE NAME = '" + cName + "'";
+            //String query = "SELECT * FROM " + TABLE_TOPICS + " WHERE NAME = (SELECT * FROM " + TABLE_CHOSEN + ")";
+            data = db.rawQuery(query, null);
 
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_TOPICS;
-        Cursor data = db.rawQuery(query, null);
+        //}
         return data;
     }
 
@@ -115,8 +154,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             tName = res.getString(2);
             bName = res.getString(3);
             Topics topics = new Topics(tID, cName, tName, bName);
+
             topicsList.add(topics);
         }
         return topicsList;
     }
+
 }
