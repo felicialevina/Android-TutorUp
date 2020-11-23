@@ -36,24 +36,29 @@ public class Payment extends AppCompatActivity {
             public void onClick(View v) {
                 String check = hours.getText().toString();
                 if(check.equals("") || check.equals("0")){
-                    toastMessage("Insert valid number of hour(s)");
+                    toastMessageS("Insert valid number of hour(s)");
                     result.setText("Your session is registered on:\n\n\n Your total fee is:\n");
                 }
                 else{
                     double noHours = Double.parseDouble(check);
                     if(noHours > 3){
-                        toastMessage("Maximum number of hours is 3");
+                        toastMessageS("Maximum number of hours is 3");
                     }
                     else{
                         final double total = fee * noHours;
                         result.setText("Your session is registered on:\n"+date+"\n\nYour total fee is: \n$"+total);
+                        toastMessageL("Email tutor for their payment preference");
                     }
                 }
             }
         });
     }
-    private void toastMessage(String message)
+    private void toastMessageS(String message)
     {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    private void toastMessageL(String message)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
