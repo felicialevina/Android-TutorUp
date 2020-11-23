@@ -28,8 +28,6 @@ public class Payment extends AppCompatActivity {
         final Double fee = intent.getDoubleExtra("fee",0.0);
         final String date = intent.getStringExtra("date");
 
-        Log.d("Payment","date: " + date);
-
         Button save = findViewById(R.id.btnSave);
         save.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -57,8 +57,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String createTable3 = "CREATE TABLE " + TABLE_CHOSEN + " ( " + COL2 + " TEXT)";
         db.execSQL(createTable3);
-        //db.execSQL("INSERT INTO " + TABLE_CHOSEN + "(NAME ) VALUES ('Computer Science')");
-
     }
 
     @Override
@@ -79,13 +77,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_CHOSEN, null, contentValues);
     }
 
-    /*public ArrayList<Topics> chosenTopics(ArrayList<Topics> mTopics)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM "
-        return mTopics;
-    }*/
-
     public Cursor getData(){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -96,9 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getTopicsData(){
         Cursor data = null;
-        //if(!TABLE_CHOSEN.isEmpty()) {
             SQLiteDatabase db = this.getWritableDatabase();
-            //String query = "SELECT * FROM " + TABLE_TOPICS;
             String query_chosen = "SELECT * FROM " + TABLE_CHOSEN;
             Cursor data_chosen = db.rawQuery(query_chosen, null);
             String cName = "";
@@ -106,18 +95,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cName = data_chosen.getString(0);
             }
             String query = "SELECT * FROM " + TABLE_TOPICS + " WHERE NAME = '" + cName + "'";
-            //String query = "SELECT * FROM " + TABLE_TOPICS + " WHERE NAME = (SELECT * FROM " + TABLE_CHOSEN + ")";
             data = db.rawQuery(query, null);
-
-        //}
-        return data;
+            return data;
     }
 
     public void deleteData(String item)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_COURSES + " WHERE name = '" + item + "'");
-        //db.execSQL("DELETE * FROM " + TABLE_TOPICS);
     }
 
     public ArrayList<Course> getList()
@@ -129,7 +114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         while(res.moveToNext())
         {
-
             cID = res.getInt(0);
             cName = res.getString(1);
             Course course = new Course(cID, cName);
