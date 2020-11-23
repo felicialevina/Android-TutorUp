@@ -53,7 +53,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_TOPICS + "(ID, NAME, TOPIC_NAME, BOOK_NAME ) VALUES (4, 'Computer Science', 'CPS209', 'Computer Science II')");
         db.execSQL("INSERT INTO " + TABLE_TOPICS + "(ID, NAME, TOPIC_NAME, BOOK_NAME ) VALUES (5, 'Chemistry', 'CHY599', 'The Business of Chemistry')");
         db.execSQL("INSERT INTO " + TABLE_TOPICS + "(ID, NAME, TOPIC_NAME, BOOK_NAME ) VALUES (6, 'Mathematics', 'MTH330', 'Advanced Engineering Calculus')");
-        //System.out.println(createTable2);
 
         String createTable3 = "CREATE TABLE " + TABLE_CHOSEN + " ( " + COL2 + " TEXT)";
         db.execSQL(createTable3);
@@ -97,12 +96,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String query = "SELECT * FROM " + TABLE_TOPICS + " WHERE NAME = '" + cName + "'";
             data = db.rawQuery(query, null);
             return data;
-    }
-
-    public void deleteData(String item)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_COURSES + " WHERE name = '" + item + "'");
     }
 
     public ArrayList<Course> getList()
