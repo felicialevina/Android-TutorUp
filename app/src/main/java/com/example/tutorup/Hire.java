@@ -46,7 +46,7 @@ public class Hire extends AppCompatActivity {
         String tutName = intent.getStringExtra("name");
         String tutDegree = intent.getStringExtra("degree");
         final String tutCourse = intent.getStringExtra("course");
-        Double tutFees = intent.getDoubleExtra("fee", 0.0);
+        final Double tutFees = intent.getDoubleExtra("fee", 0.0);
         final String tutEmail = intent.getStringExtra("email");
 
         String result = "Degree: " + tutDegree + "\n\nFees: " + tutFees + "\n\nContact: " + tutEmail;
@@ -121,9 +121,12 @@ public class Hire extends AppCompatActivity {
                 c.set(Calendar.MONTH, month);
                 c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-                /*Add to on-storage method*/
                 databaseHelper.addData(tutCourse);
 
+                Intent intent = new Intent(Hire.this, Payment.class);
+                intent.putExtra("fee", tutFees);
+                intent.putExtra("date", frmtDate.format(c.getTime()));
+                startActivity(intent);
             }
         };
 
@@ -132,10 +135,7 @@ public class Hire extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(Hire.this, d, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
-
             }
         });
-
-        /*frmtDate.format(c.getTime())*/
     }
 }
