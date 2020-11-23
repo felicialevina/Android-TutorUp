@@ -37,7 +37,7 @@ public class Payment extends AppCompatActivity {
                 String check = hours.getText().toString();
                 if(check.equals("") || check.equals("0")){
                     toastMessage("Insert valid number of hour(s)");
-                    result.setText("");
+                    result.setText("Your session is registered on:\n\n\n Your total fee is:\n");
                 }
                 else{
                     double noHours = Double.parseDouble(check);
