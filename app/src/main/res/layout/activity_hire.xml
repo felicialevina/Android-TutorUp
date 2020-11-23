@@ -10,11 +10,6 @@
         android:id="@+id/txtRate"
         android:layout_width="281dp"
         android:layout_height="146dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginBottom="36dp"
         android:background="#AA8CD8"
         android:gravity="center_horizontal"
         android:paddingTop="10sp"
@@ -23,91 +18,72 @@
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHire" />
 
     <TextView
         android:id="@+id/txtBackground"
         android:layout_width="290dp"
         android:layout_height="190dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:layout_marginBottom="308dp"
         android:background="#AA8CD8"
         android:text="@string/lblBackground"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgClass"
+        app:layout_constraintVertical_bias="0.034" />
 
     <Button
         android:id="@+id/btnHire"
         android:layout_width="249dp"
         android:layout_height="48dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
-        android:layout_marginBottom="220dp"
         android:background="#AA8CD8"
         android:text="@string/btnHire"
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBackground"
+        app:layout_constraintVertical_bias="0.098" />
 
     <ImageView
         android:id="@+id/imgClass"
         android:layout_width="203dp"
         android:layout_height="194dp"
-        android:layout_marginStart="81dp"
-        android:layout_marginLeft="81dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="82dp"
-        android:layout_marginRight="82dp"
         android:contentDescription="@string/contentDescription"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001"
         app:srcCompat="@drawable/classroom" />
 
     <TextView
         android:id="@+id/txtTutName"
         android:layout_width="254dp"
         android:layout_height="38dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginRight="67dp"
-        android:layout_marginBottom="171dp"
         android:gravity="center_horizontal"
         android:text="@string/txtTutName"
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnHire"
+        app:layout_constraintBottom_toTopOf="@+id/txtInfo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtBackground" />
 
     <TextView
         android:id="@+id/txtInfo"
         android:layout_width="245dp"
         android:layout_height="96dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
-        android:layout_marginBottom="58dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/txtInfo"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnHire"
+        app:layout_constraintBottom_toBottomOf="@+id/txtBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -115,16 +91,14 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginRight="77dp"
-        android:layout_marginBottom="48dp"
+        android:numStars="5"
+        android:stepSize="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        android:numStars="5"
-        android:stepSize="0.5"/>
+        app:layout_constraintTop_toTopOf="@+id/txtRate"
+        app:layout_constraintVertical_bias="0.696" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
