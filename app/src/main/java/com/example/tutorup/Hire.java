@@ -77,12 +77,7 @@ public class Hire extends AppCompatActivity {
                                                 if(tEmail.equals(tutEmail)) {
                                                     ArrayList<Double> list = (ArrayList<Double>) document.getData().get("ratingList");
                                                     list.add(ratingInput);
-                                                    double ratingTotal = 0.0;
-                                                    for (int i = 0; i < list.size(); i++) {
-                                                        String convert = "" + list.get(i);
-                                                        ratingTotal += Double.parseDouble(convert);
-                                                    }
-                                                    ratingTotal = ratingTotal / list.size();
+                                                    double ratingTotal = calcAverage(list);
 
                                                     Map<String, Object> map = new HashMap<>();
                                                     map.put("rating", ratingTotal);
@@ -125,6 +120,7 @@ public class Hire extends AppCompatActivity {
 
                 Intent intent = new Intent(Hire.this, Payment.class);
                 intent.putExtra("fee", tutFees);
+                intent.putExtra("email", tutEmail);
                 intent.putExtra("date", frmtDate.format(c.getTime()));
                 startActivity(intent);
             }
@@ -137,5 +133,16 @@ public class Hire extends AppCompatActivity {
                 new DatePickerDialog(Hire.this, d, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+    }
+
+    public double calcAverage(ArrayList<Double> list){
+        double ratingTotal = 0.0;
+
+        for (int i = 0; i < list.size(); i++) {
+            String convert = "" + list.get(i);
+            ratingTotal += Double.parseDouble(convert);}
+
+        ratingTotal = ratingTotal / list.size();
+        return ratingTotal;
     }
 }

@@ -26,6 +26,7 @@ public class Payment extends AppCompatActivity {
 
         Intent intent = getIntent();
         final Double fee = intent.getDoubleExtra("fee",0.0);
+        final String email = intent.getStringExtra("email");
         final String date = intent.getStringExtra("date");
 
         Button save = findViewById(R.id.btnSave);
@@ -34,29 +35,24 @@ public class Payment extends AppCompatActivity {
             public void onClick(View v) {
                 String check = hours.getText().toString();
                 if(check.equals("") || check.equals("0")){
-                    toastMessageS("Insert valid number of hour(s)");
+                    toastMessage("Insert valid number of hour(s)");
                     result.setText("Your session is registered on:\n\n\n Your total fee is:\n");
                 }
                 else{
                     double noHours = Double.parseDouble(check);
                     if(noHours > 3){
-                        toastMessageS("Maximum number of hours is 3");
+                        toastMessage("Maximum number of hours is 3");
                     }
                     else{
                         final double total = fee * noHours;
-                        result.setText("Your session is registered on:\n"+date+"\n\nYour total fee is: \n$"+total);
-                        toastMessageL("Email tutor for their payment preference");
+                        result.setText("Your session is registered on:\n"+date+"\n\nYour total fee is: \n$"+total+"\n\nEmail tutor for their\npayment preference:\n"+email);
                     }
                 }
             }
         });
     }
-    private void toastMessageS(String message)
+    private void toastMessage(String message)
     {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-    private void toastMessageL(String message)
-    {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
