@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -57,6 +58,7 @@ public class Login extends AppCompatActivity {
 
                                             if (tEmail.equals(uEmail)) {
                                                 if(!tPass.equals(uPass)){
+                                                    notif++;
                                                     toastMessage("Incorrect password");
                                                     pass.setText("");
                                                 }
@@ -103,6 +105,7 @@ public class Login extends AppCompatActivity {
 
                                         if(sEmail.equals(uEmail)){
                                             if(!sPass.equals(uPass)){
+                                                notif++;
                                                 toastMessage("Incorrect password");
                                                 pass.setText("");
                                             }
