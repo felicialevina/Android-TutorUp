@@ -1,11 +1,7 @@
 package com.example.tutorup;
 
-import android.content.Context;
-
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
-
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,7 +17,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.*;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -32,14 +27,7 @@ import static org.junit.Assert.*;
 public class LoginUseCaseTest {
     @Rule
     public ActivityTestRule mActivityRule = new ActivityTestRule<>(Login.class);
-/*
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.tutorup", appContext.getPackageName());
-    }
-*/
+
 //Login Use Case
     //When one of the field is empty
    @Test
@@ -88,15 +76,4 @@ public class LoginUseCaseTest {
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
-
-/*
-    //When student enter login properly
-    @Test
-    public void loginActivityLaunch5() {
-        onView(withId(R.id.txtEmail)).perform(typeText("flevina"));
-        onView(withId(R.id.txtPass)).perform(typeText("a"), closeSoftKeyboard());
-        onView(withId(R.id.radST)).perform(click());
-        onView(withId(R.id.txtSearch)).check(matches(isDisplayed()));
-    }
-*/
 }
