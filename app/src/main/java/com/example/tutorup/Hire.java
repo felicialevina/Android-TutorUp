@@ -29,16 +29,14 @@ import java.util.Map;
 
 public class Hire extends AppCompatActivity {
     DatabaseHelper databaseHelper = new DatabaseHelper(this);
-    //FirebaseFirestore db = FirebaseFirestore.getInstance();
     RatingBar ratingBar;
     double ratingInput = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hire);
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         TextView info = findViewById(R.id.txtInfo);
         TextView setName = findViewById(R.id.txtTutName);
