@@ -56,6 +56,8 @@ public class Payment extends AppCompatActivity {
                     else{
                         final double total = fee * noHours;
                         result.setText("Your session is registered on:\n"+date+"\n\nYour total fee is: \n$"+total+"\n\nEmail tutor for payment info:\n"+email);
+                        JavaMailAPI javaMailAPI = new JavaMailAPI(Payment.this, email, "Tutor Up Schedule", "A student has set up a TutorUp session with you on "+ date);
+                        javaMailAPI.execute();
                         home.setVisibility(View.VISIBLE);
                     }
                 }
