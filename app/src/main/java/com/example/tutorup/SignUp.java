@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -51,12 +55,18 @@ public class SignUp extends AppCompatActivity {
             else{
                 sName = name.getText().toString();
                 sEmail = email.getText().toString();
+                boolean eChecker = isValidEmail(sEmail);
+                boolean pChecker = isValidPassword(sPass);
 
                 if(sName.equals("") || sEmail.equals("")){
                     toastMessage("Fill in all fields"); }
                 else if(!radHS.isChecked() && !radPS.isChecked()){
                     toastMessage("Choose an education level");
                 }
+                else if(eChecker == false){
+                    toastMessage("Invalid email address");}
+                else if(pChecker == false || sPass.length() < 8){
+                    toastMessageL("Password needs to contain at least 8 characters including 1 letter and 1 number");}
                 else{
                     //FIRESTORE
                     Map<String, Object> student = new HashMap<>();
@@ -90,8 +100,21 @@ public class SignUp extends AppCompatActivity {
                 }
         });}
 
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+    public boolean isValidPassword(final String password) {
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{4,}$";
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
     private void toastMessage(String message)
     {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+    private void toastMessageL(String message)
+    {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

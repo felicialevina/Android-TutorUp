@@ -30,6 +30,16 @@ public class Payment extends AppCompatActivity {
         final String date = intent.getStringExtra("date");
 
         Button save = findViewById(R.id.btnSave);
+        final Button home = findViewById(R.id.btnHome);
+        home.setVisibility(View.INVISIBLE);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Payment.this, Homepage.class));
+            }
+        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +55,8 @@ public class Payment extends AppCompatActivity {
                     }
                     else{
                         final double total = fee * noHours;
-                        result.setText("Your session is registered on:\n"+date+"\n\nYour total fee is: \n$"+total+"\n\nEmail tutor for their\npayment preference:\n"+email);
+                        result.setText("Your session is registered on:\n"+date+"\n\nYour total fee is: \n$"+total+"\n\nEmail tutor for payment info:\n"+email);
+                        home.setVisibility(View.VISIBLE);
                     }
                 }
             }
