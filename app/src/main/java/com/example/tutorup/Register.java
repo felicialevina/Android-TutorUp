@@ -27,8 +27,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     String tName;
     String tEmail;
     String feeCheck;
@@ -41,6 +39,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         final EditText name = findViewById(R.id.txtName2);
