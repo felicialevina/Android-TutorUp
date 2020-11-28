@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -27,7 +31,7 @@ public class SignUp extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String sName;
     String sEmail;
-    String sPass;
+    String sPass, sPass2;
     String sConf;
 
     @Override
@@ -47,6 +51,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             sPass = pass.getText().toString();
+            sPass2 = md5(sPass);
             sConf = conf.getText().toString();
 
             if(!sPass.equals(sConf)){
@@ -72,14 +77,13 @@ public class SignUp extends AppCompatActivity {
                     Map<String, Object> student = new HashMap<>();
                     student.put("name", sName);
                     student.put("email", sEmail);
-                    student.put("password", sPass);
+                    student.put("password", sPass2);
                     if(radHS.isChecked()){
                         student.put("education", radHS.getText());
                     }
                     else{
                         student.put("education", radPS.getText());
                     }
-                    student.put("balance", 100);
 
                     db.collection("students")
                             .add(student)
@@ -116,5 +120,23 @@ public class SignUp extends AppCompatActivity {
     private void toastMessageL(String message)
     {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+    public static String md5(String s)
+    {
+        MessageDigest digest;
+        try
+        {
+            digest = MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes(Charset.forName("US-ASCII")),0,s.length());
+            byte[] magnitude = digest.digest();
+            BigInteger bi = new BigInteger(1, magnitude);
+            String hash = String.format("%0" + (magnitude.length << 1) + "x", bi);
+            return hash;
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

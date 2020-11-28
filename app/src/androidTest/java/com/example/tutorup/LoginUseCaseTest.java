@@ -65,7 +65,6 @@ public class LoginUseCaseTest {
                 .check(matches(isDisplayed()));
     }
 
-
     //When student or tutor radio button not selected
     @Test
     public void loginActivityLaunch4() {

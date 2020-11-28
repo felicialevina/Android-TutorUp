@@ -29,52 +29,35 @@ public class TimespanUseCaseTest {
     public ActivityTestRule mActivityRule = new ActivityTestRule<>(Payment.class);
 
 //Timespan Use Case
-    /*
-    //When one of the field is empty
+    //When max hour exceeded
     @Test
-    public void loginActivityLaunch() {
-
-        onView(withId(R.id.txtEmail)).perform(typeText("flevina"));
-        onView(withId(R.id.txtPass)).perform(typeText(""), closeSoftKeyboard());
-        onView(withId(R.id.btnLogin2)).perform(click());
-        onView(withText("Fill in all fields"))
+    public void improperTimespan() {
+        onView(withId(R.id.txtHours)).perform(typeText("4"), closeSoftKeyboard());
+        onView(withId(R.id.btnSave)).perform(click());
+        onView(withText("Maximum number of hours is 3"))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
 
-    //When wrong password
+    //When timespan field is empty
     @Test
-    public void loginActivityLaunch2() {
-        onView(withId(R.id.txtEmail)).perform(typeText("flevina"));
-        onView(withId(R.id.txtPass)).perform(typeText("b"), closeSoftKeyboard());
-        onView(withId(R.id.radST)).perform(click());
-        onView(withId(R.id.btnLogin2)).perform(click());
-        onView(withText("Incorrect password"))
+    public void emptyTimespan() {
+        onView(withId(R.id.txtHours)).perform(typeText(""), closeSoftKeyboard());
+        onView(withId(R.id.btnSave)).perform(click());
+        onView(withText("Insert valid number of hour(s)"))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
 
-    //When account does not exist
+    //When timespan input is 0
     @Test
-    public void loginActivityLaunch3() {
-        onView(withId(R.id.txtEmail)).perform(typeText("test@gmail.com"));
-        onView(withId(R.id.txtPass)).perform(typeText("b"), closeSoftKeyboard());
-        onView(withId(R.id.radST)).perform(click());
-        onView(withId(R.id.btnLogin2)).perform(click());
-        onView(withText("Student account not found"))
+    public void zeroTimespan() {
+        onView(withId(R.id.txtHours)).perform(typeText("0"), closeSoftKeyboard());
+        onView(withId(R.id.btnSave)).perform(click());
+        onView(withText("Insert valid number of hour(s)"))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
 
-    //When student or tutor radio button not selected
-    @Test
-    public void loginActivityLaunch4() {
-        onView(withId(R.id.txtEmail)).perform(typeText("flevina"));
-        onView(withId(R.id.txtPass)).perform(typeText("a"), closeSoftKeyboard());
-        onView(withId(R.id.btnLogin2)).perform(click());
-        onView(withText("Select tutor or student"))
-                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
-                .check(matches(isDisplayed()));
-    }
-     */
+
 }

@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -19,11 +18,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class Login extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String uEmail;
-    String uPass;
+    String uPass, uPass2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 uEmail = email.getText().toString();
                 uPass = pass.getText().toString();
+                uPass2 = md5(uPass);
 
                 if(uEmail.equals("") || uPass.equals("")){
                     toastMessage("Fill in all fields");
@@ -57,13 +62,12 @@ public class Login extends AppCompatActivity {
                                             String tPass = document.getData().get("password").toString();
 
                                             if (tEmail.equals(uEmail)) {
-                                                if(!tPass.equals(uPass)){
+                                                if(!tPass.equals(uPass2)){
                                                     notif++;
                                                     toastMessage("Incorrect password");
                                                     pass.setText("");
                                                 }
                                                 else {
-                                                    //String tBalance = document.getData().get("balance").toString();
                                                     String tFee = document.getData().get("fee").toString();
                                                     String tDegree = document.getData().get("degree").toString();
                                                     String tName = document.getData().get("name").toString();
@@ -75,7 +79,6 @@ public class Login extends AppCompatActivity {
                                                     intent.putExtra("degree", tDegree);
                                                     intent.putExtra("fee", tFee);
                                                     intent.putExtra("rating", tRating);
-                                                    //intent.putExtra("balance", tBalance);
                                                     notif++;
                                                     startActivity(intent);
                                                     break;
@@ -104,7 +107,7 @@ public class Login extends AppCompatActivity {
                                         String sPass = document.getData().get("password").toString();
 
                                         if(sEmail.equals(uEmail)){
-                                            if(!sPass.equals(uPass)){
+                                            if(!sPass.equals(uPass2)){
                                                 notif++;
                                                 toastMessage("Incorrect password");
                                                 pass.setText("");
@@ -136,4 +139,22 @@ public class Login extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    public static String md5(String s)
+    {
+        MessageDigest digest;
+        try
+        {
+            digest = MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes(Charset.forName("US-ASCII")),0,s.length());
+            byte[] magnitude = digest.digest();
+            BigInteger bi = new BigInteger(1, magnitude);
+            String hash = String.format("%0" + (magnitude.length << 1) + "x", bi);
+            return hash;
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }

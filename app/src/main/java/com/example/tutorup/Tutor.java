@@ -8,9 +8,8 @@ public class Tutor {
     String degree;
     double rating;
     double fee;
-    double balance;
 
-    public Tutor(String name, String email, String pass, String course, String degree, double rating, double fee, double balance){
+    public Tutor(String name, String email, String pass, String course, String degree, double rating, double fee){
         this.name = name;
         this.email = email;
         this.pass = pass;
@@ -18,7 +17,6 @@ public class Tutor {
         this.degree = degree;
         this.rating = rating;
         this.fee = fee;
-        this.balance = balance;
     }
     public String getName(){
         return name;
@@ -38,8 +36,4 @@ public class Tutor {
     public double getRating(){
         return rating;
     }
-    public double getBalance(){
-        return balance;
-    }
-    public void setBalance(double balance){ this.balance = balance; }
 }

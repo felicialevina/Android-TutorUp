@@ -20,6 +20,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +35,7 @@ public class Register extends AppCompatActivity {
     String tEmail;
     String feeCheck;
     double tFee;
-    String tPass;
+    String tPass, tPass2;
     String tConf;
     String tCourse;
 
@@ -57,6 +61,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tPass = pass.getText().toString();
+                tPass2 = md5(tPass);
                 tConf = conf.getText().toString();
 
                 if(!tPass.equals(tConf)){
@@ -87,12 +92,11 @@ public class Register extends AppCompatActivity {
                         tutor.put("name", tName);
                         tutor.put("email", tEmail);
                         tutor.put("fee", tFee);
-                        tutor.put("password", tPass);
+                        tutor.put("password", tPass2);
                         if(radBA.isChecked()){tutor.put("degree", radBA.getText()); }
                         else if(radMA.isChecked()){tutor.put("degree", radMA.getText()); }
                         else{tutor.put("degree", radPH.getText()); }
                         tutor.put("course", tCourse);
-                        tutor.put("balance", 0);
                         tutor.put("rating", 0);
 
                         ArrayList<Double> arrayExample = new ArrayList<>();
@@ -131,5 +135,23 @@ public class Register extends AppCompatActivity {
         Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+    public static String md5(String s)
+    {
+        MessageDigest digest;
+        try
+        {
+            digest = MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes(Charset.forName("US-ASCII")),0,s.length());
+            byte[] magnitude = digest.digest();
+            BigInteger bi = new BigInteger(1, magnitude);
+            String hash = String.format("%0" + (magnitude.length << 1) + "x", bi);
+            return hash;
+        }
+        catch (NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

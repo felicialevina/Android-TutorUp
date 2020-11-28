@@ -15,9 +15,6 @@ public class Topics {
     public int getId(){
         return id;
     }
-    public String getCourseName(){
-        return course_name;
-    }
     public String getTopicName(){
         return topic_name;
     }

@@ -1,7 +1,6 @@
 package com.example.tutorup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +40,6 @@ public class TutorList extends AppCompatActivity {
                                 String tCourse = document.getData().get("course").toString();
 
                                 if(tCourse.equals(check)){
-                                String tBalance = document.getData().get("balance").toString();
                                 String tDegree = document.getData().get("degree").toString();
                                 String tEmail = document.getData().get("email").toString();
                                 String tFee = document.getData().get("fee").toString();
@@ -54,9 +52,8 @@ public class TutorList extends AppCompatActivity {
                                 DecimalFormat df = new DecimalFormat("#.#");
                                 String rounding = df.format(tRating2);
                                 tRating2 = Double.parseDouble(rounding);
-                                double tBalance2 = Double.parseDouble(tBalance);
 
-                                Tutor tutor = new Tutor(tName, tEmail, tPass, tCourse, tDegree, tRating2, tFee2, tBalance2);
+                                Tutor tutor = new Tutor(tName, tEmail, tPass, tCourse, tDegree, tRating2, tFee2);
                                 mTutors.add(tutor);
                                 }
                             }

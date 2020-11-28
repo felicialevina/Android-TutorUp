@@ -6,15 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-import static android.widget.Toast.LENGTH_SHORT;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
